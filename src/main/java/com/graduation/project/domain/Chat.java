@@ -1,4 +1,4 @@
-package com.graduation.domain;
+package com.graduation.project.domain;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -14,11 +14,11 @@ public class Chat extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "receiver_id")
-    private User receiver;              // 수신자
+    private Users receiver;              // 수신자
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sender_id")
-    private User sender;                // 발신자
+    private Users sender;                // 발신자
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")

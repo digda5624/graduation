@@ -1,4 +1,4 @@
-package com.graduation.domain;
+package com.graduation.project.domain;
 
 import javax.persistence.*;
 
@@ -9,7 +9,7 @@ public class CommentHeart extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user;
+    private Users user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "comment_id")

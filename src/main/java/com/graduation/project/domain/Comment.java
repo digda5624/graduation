@@ -1,4 +1,4 @@
-package com.graduation.domain;
+package com.graduation.project.domain;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -22,7 +22,7 @@ public class Comment extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user;
+    private Users user;
 
     @OneToMany(mappedBy = "comment")
     private List<CommentHeart> commentHearts;

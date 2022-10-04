@@ -1,4 +1,4 @@
-package com.graduation.domain;
+package com.graduation.project.domain;
 
 import javax.persistence.*;
 
@@ -10,7 +10,7 @@ public class PostHeart extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user;
+    private Users user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
