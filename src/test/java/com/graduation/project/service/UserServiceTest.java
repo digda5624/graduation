@@ -1,6 +1,6 @@
 package com.graduation.project.service;
 
-import com.graduation.project.domain.Users;
+import com.graduation.project.domain.User;
 import com.graduation.project.dto.UserGetResponse;
 import com.graduation.project.error.UserErrorResult;
 import com.graduation.project.error.UserException;
@@ -30,8 +30,8 @@ public class UserServiceTest {
     @Mock
     private UserRepository userRepository;
 
-    private Users user() {
-        return Users.builder()
+    private User user() {
+        return User.builder()
                 .id(userId)
                 .name(name)
                 .nickname(nickname)
@@ -58,6 +58,24 @@ public class UserServiceTest {
         assertThat(result.getName()).isEqualTo(name);
         assertThat(result.getNickname()).isEqualTo(nickname);
         assertThat(result.getLoginId()).isEqualTo(loginId);
+    }
 
+    @Test
+    void User삭제실패_DB에없음() {
+        // given
+        doReturn(Optional.empty()).when(userRepository).findById(userId);
+        // when
+        UserException result = assertThrows(UserException.class, () -> target.removeUser(userId));
+        // then
+        assertThat(result.getErrorResult()).isEqualTo(UserErrorResult.USER_NOT_FOUND);
+    }
+
+    @Test
+    void User삭제성공() {
+        // given
+        doReturn(Optional.of(user())).when(userRepository).findById(userId);
+        // when
+        target.removeUser(userId);
+        // then
     }
 }

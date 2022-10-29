@@ -1,15 +1,14 @@
 package com.graduation.project.repository;
 
-import com.graduation.project.domain.Users;
+import com.graduation.project.domain.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 @Transactional
@@ -24,9 +23,9 @@ public class UserRepositoryTest {
     }
 
     @Test
-    void User조회() {
+    void User등록() {
         // given
-        Users user = Users.builder()
+        User user = User.builder()
                 .id(1L)
                 .loginId("testID")
                 .nickname("test")
@@ -34,12 +33,43 @@ public class UserRepositoryTest {
                 .password("1234")
                 .build();
         // when
-        Users savedUser = userRepository.save(user);
-        Optional<Users> findUser = userRepository.findById(1L);
+        User savedUser = userRepository.save(user);
         // then
-        assertTrue(findUser.isPresent());
-        assertThat(findUser.get().getId()).isNotNull();
-        assertThat(findUser.get()).isEqualTo(savedUser);
+        assertThat(savedUser.getId()).isNotNull();
+        assertThat(savedUser.getName()).isEqualTo("test");
+        assertThat(savedUser.getLoginId()).isEqualTo("testID");
+
+    }
+    @Test
+    void User조회_로그인아이디() {
+        // given
+        User user = User.builder()
+                .id(1L)
+                .loginId("testID")
+                .nickname("test")
+                .name("test")
+                .password("1234")
+                .build();
+        // when
+        User savedUser = userRepository.save(user);
+        User findUser = userRepository.findByLoginId("testID");
+        // then
+        assertThat(findUser).isNotNull();
+        assertThat(findUser.getId()).isNotNull();
+        assertThat(findUser.getLoginId()).isEqualTo(savedUser.getLoginId());
+        assertThat(findUser).isEqualTo(savedUser);
+    }
+
+    @Test
+    void User삭제() {
+        // given
+        User user = User.builder().build();
+        User savedUser = userRepository.save(user);
+        // when
+        userRepository.deleteById(savedUser.getId());
+        List<User> users = userRepository.findAll();
+        // then
+        assertThat(users.size()).isEqualTo(0);
     }
 
 }

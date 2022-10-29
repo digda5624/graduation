@@ -1,6 +1,6 @@
 package com.graduation.project.service;
 
-import com.graduation.project.domain.Users;
+import com.graduation.project.domain.User;
 import com.graduation.project.dto.UserGetResponse;
 import com.graduation.project.error.UserErrorResult;
 import com.graduation.project.error.UserException;
@@ -19,13 +19,19 @@ public class UserService {
     private final UserRepository userRepository;
 
     public UserGetResponse getUser(Long userId) {
-        Optional<Users> optionalUser = userRepository.findById(userId);
-        Users user = optionalUser.orElseThrow(() -> new UserException(UserErrorResult.USER_NOT_FOUND));
+        Optional<User> optionalUser = userRepository.findById(userId);
+        User user = optionalUser.orElseThrow(() -> new UserException(UserErrorResult.USER_NOT_FOUND));
 
         return UserGetResponse.builder()
                 .name(user.getName())
                 .nickname(user.getNickname())
                 .loginId(user.getLoginId())
                 .build();
+    }
+
+    public void removeUser(Long userId){
+        Optional<User> optionalUsers = userRepository.findById(userId);
+        optionalUsers.orElseThrow(() -> new UserException(UserErrorResult.USER_NOT_FOUND));
+        userRepository.deleteById(userId);
     }
 }

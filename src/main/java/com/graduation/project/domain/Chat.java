@@ -14,11 +14,11 @@ public class Chat extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "receiver_id")
-    private Users receiver;              // 수신자
+    private User receiver;              // 수신자
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sender_id")
-    private Users sender;                // 발신자
+    private User sender;                // 발신자
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")

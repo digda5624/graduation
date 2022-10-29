@@ -1,8 +1,8 @@
 package com.graduation.project.controller;
 
 import com.google.gson.Gson;
-import com.graduation.project.domain.Users;
 import com.graduation.project.dto.UserGetResponse;
+import com.graduation.project.error.GlobalExceptionHandler;
 import com.graduation.project.error.UserErrorResult;
 import com.graduation.project.error.UserException;
 import com.graduation.project.service.UserService;
@@ -35,6 +35,7 @@ public class UserControllerTest {
     void init() {
         gson = new Gson();
         mockMvc = MockMvcBuilders.standaloneSetup(target)
+                .setControllerAdvice(GlobalExceptionHandler.class)
                 .build();
     }
 
@@ -43,7 +44,6 @@ public class UserControllerTest {
         Assertions.assertThat(target).isNotNull();
         Assertions.assertThat(mockMvc).isNotNull();
     }
-
     @Test
     void User상세조회실패_User존재하지않음() throws Exception {
         // given
@@ -72,5 +72,17 @@ public class UserControllerTest {
         );
         // then
         resultActions.andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    void User삭제성공() throws Exception {
+        // given
+        String url = "/users/1";
+        // when
+        ResultActions resultActions = mockMvc.perform(
+                MockMvcRequestBuilders.delete(url)
+        );
+        // then
+        resultActions.andExpect(MockMvcResultMatchers.status().isNoContent());
     }
 }

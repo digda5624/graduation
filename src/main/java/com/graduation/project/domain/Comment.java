@@ -1,5 +1,10 @@
 package com.graduation.project.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -7,6 +12,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "Comments")
+@NoArgsConstructor
+@Getter
+@Builder
+@AllArgsConstructor
 public class Comment extends BaseEntity {
     @Id
     @GeneratedValue
@@ -22,7 +31,7 @@ public class Comment extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private Users user;
+    private User user;
 
     @OneToMany(mappedBy = "comment")
     private List<CommentHeart> commentHearts;

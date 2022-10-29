@@ -1,9 +1,18 @@
 package com.graduation.project.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@NoArgsConstructor
+@Getter
+@Builder
+@AllArgsConstructor
 public class Post extends BaseEntity {
     @Id
     @GeneratedValue
@@ -19,7 +28,7 @@ public class Post extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private Users user;
+    private User user;
 
     @OneToMany(mappedBy = "post")
     private List<PostHeart> postHearts;
