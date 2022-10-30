@@ -1,4 +1,9 @@
-package com.graduation.domain;
+package com.graduation.project.domain;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -7,6 +12,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "Comments")
+@NoArgsConstructor
+@Getter
+@Builder
+@AllArgsConstructor
 public class Comment extends BaseEntity {
     @Id
     @GeneratedValue

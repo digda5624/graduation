@@ -1,11 +1,18 @@
-package com.graduation.domain;
+package com.graduation.project.domain;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 @Entity
+@NoArgsConstructor
+@Getter
+@Builder
+@AllArgsConstructor
 public class Post extends BaseEntity {
     @Id
     @GeneratedValue

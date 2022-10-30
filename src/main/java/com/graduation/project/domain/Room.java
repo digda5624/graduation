@@ -1,6 +1,4 @@
-package com.graduation.domain;
-
-import lombok.NoArgsConstructor;
+package com.graduation.project.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,18 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@NoArgsConstructor
-public class User {
+public class Room {
     @Id @GeneratedValue
     private Long id;
 
-    private String loginId;
-    private String nickname;
-    private String password;
-    private String hint;
-    private String name;
-    private String answer;
+    private Integer price;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "room")
     private List<Prefer> prefers = new ArrayList<>();
 }

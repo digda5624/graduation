@@ -1,4 +1,4 @@
-package com.graduation.domain;
+package com.graduation.project.domain;
 
 import javax.persistence.*;
 
