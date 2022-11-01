@@ -1,5 +1,6 @@
 package com.graduation.project.domain;
 
+import com.graduation.project.domain.enumtype.Auth;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,6 +26,9 @@ public class User {
     private String hint;
     private String name;
     private String answer;
+
+    @Enumerated(EnumType.STRING)
+    private Auth auth;
 
     @OneToMany(mappedBy = "user")
     private List<Prefer> prefers = new ArrayList<>();

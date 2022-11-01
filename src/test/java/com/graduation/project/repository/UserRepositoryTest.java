@@ -52,7 +52,7 @@ public class UserRepositoryTest {
                 .build();
         // when
         User savedUser = userRepository.save(user);
-        User findUser = userRepository.findByLoginId("testID");
+        User findUser = userRepository.findByLoginId("testID").orElse(null);
         // then
         assertThat(findUser).isNotNull();
         assertThat(findUser.getId()).isNotNull();

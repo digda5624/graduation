@@ -2,7 +2,7 @@ package com.graduation.project.controller;
 
 import com.google.gson.Gson;
 import com.graduation.project.dto.UserGetResponse;
-import com.graduation.project.error.GlobalExceptionHandler;
+import com.graduation.project.error.exceptionHandler.GlobalExceptionHandler;
 import com.graduation.project.error.UserErrorResult;
 import com.graduation.project.error.UserException;
 import com.graduation.project.service.UserService;
