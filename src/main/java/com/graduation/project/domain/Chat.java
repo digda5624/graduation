@@ -6,7 +6,7 @@ import java.time.LocalTime;
 
 @Entity
 public class Chat extends BaseEntity {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate date;             // 쪽지 발생 날짜
     private LocalTime time;             // 쪽지 발생 시간

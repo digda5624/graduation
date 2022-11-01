@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 public class CommentHeart extends BaseEntity {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
