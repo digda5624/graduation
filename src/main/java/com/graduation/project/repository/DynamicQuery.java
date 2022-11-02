@@ -5,6 +5,7 @@ import com.graduation.project.domain.enumType.RoomType;
 import com.graduation.project.dto.RoomSearchRequest;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,9 +13,10 @@ import java.util.List;
 import static com.graduation.project.domain.QRoom.room;
 
 @Repository
+@RequiredArgsConstructor
 public class DynamicQuery {
 
-    JPAQueryFactory jpaQueryFactory;
+    private final JPAQueryFactory jpaQueryFactory;
 
     public List<Long> searchRoom(RoomSearchRequest request) {
         return jpaQueryFactory.select(room.id)
@@ -31,7 +33,7 @@ public class DynamicQuery {
 
     private BooleanExpression searchContentLike(String content){
         return content == null || content.equals("") ?
-                null : room.address.like(content);
+                null : room.address.like("%" + content + "%");
     }
 
     private BooleanExpression feeBetween(Integer s, Integer e){

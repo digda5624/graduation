@@ -3,6 +3,8 @@ package com.graduation.project.domain;
 import com.graduation.project.domain.enumType.DealType;
 import com.graduation.project.domain.enumType.RoomType;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -12,6 +14,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 public class Room {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,4 +34,20 @@ public class Room {
 
     @OneToMany(mappedBy = "room")
     private List<Prefer> prefers = new ArrayList<>();
+
+    @OneToMany(mappedBy = "room")
+    private List<Review> reviews = new ArrayList<>();
+
+    @Builder
+    public Room(String sigungu, String address, Integer price, DealType dealType, Integer managementFees, RoomType roomType, Boolean hasGarage, Boolean canShortLive, Double distance) {
+        this.sigungu = sigungu;
+        this.address = address;
+        this.price = price;
+        this.dealType = dealType;
+        this.managementFees = managementFees;
+        this.roomType = roomType;
+        this.hasGarage = hasGarage;
+        this.canShortLive = canShortLive;
+        this.distance = distance;
+    }
 }

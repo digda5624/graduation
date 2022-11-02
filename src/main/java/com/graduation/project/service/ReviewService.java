@@ -9,6 +9,7 @@ import com.graduation.project.repository.RoomRepository;
 import com.graduation.project.repository.UserRepository;
 import com.graduation.project.repository.dto.RoomReviewDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
@@ -18,6 +19,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
+@Service
 public class ReviewService {
 
     private final ReviewRepository reviewRepository;
@@ -28,7 +30,7 @@ public class ReviewService {
     public Map<String, Object> getRoomReviews(Long roomId){
 
         Map<String, Object> resultMap = new HashMap<>();
-        Map<Integer, Integer> scoreMap = Map.of(1, 0, 2, 0, 3, 0, 4, 0, 5, 0);
+        Map<Integer, Integer> scoreMap = new HashMap<>(Map.of(1, 0, 2, 0, 3, 0, 4, 0, 5, 0));
 
         List<RoomReviewDTO> roomReviews = reviewRepository.getRoomReviews(roomId);
         roomReviews.stream().forEach(roomReviewDTO -> {
