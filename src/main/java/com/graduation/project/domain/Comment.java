@@ -18,7 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Comment extends BaseEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate date;          // 게시글 작성 날짜
     private LocalTime time;          // 게시글 작성 시간

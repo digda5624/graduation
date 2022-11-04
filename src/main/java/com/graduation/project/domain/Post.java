@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Post extends BaseEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;                   // 개사글 제목
     @Lob

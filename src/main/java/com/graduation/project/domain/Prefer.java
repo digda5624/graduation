@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 @Entity
 public class Prefer extends BaseEntity {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
