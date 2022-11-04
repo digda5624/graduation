@@ -32,4 +32,26 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Prefer> prefers = new ArrayList<>();
+
+    @Builder
+    public User(String loginId, String nickname, String password, String hint, String name, String answer, Auth auth) {
+        this.loginId = loginId;
+        this.nickname = nickname;
+        this.password = password;
+        this.hint = hint;
+        this.name = name;
+        this.answer = answer;
+        this.auth = auth;
+    }
+
+    public static User createUser(String loginId, String nickname, String password, String hint, String name, String answer, Auth auth) {
+        return builder().loginId(loginId)
+                .nickname(nickname)
+                .password(password)
+                .hint(hint)
+                .name(name)
+                .answer(answer)
+                .auth(auth)
+                .build();
+    }
 }
