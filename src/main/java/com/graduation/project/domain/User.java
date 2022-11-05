@@ -1,6 +1,7 @@
 package com.graduation.project.domain;
 
 import com.graduation.project.domain.enumtype.Auth;
+import com.graduation.project.dto.FindPasswordRequest;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -53,5 +54,11 @@ public class User {
                 .answer(answer)
                 .auth(auth)
                 .build();
+    }
+
+    public void changePassword(String password, String newHint, String newAnswer) {
+        this.password = password;
+        this.hint = newHint;
+        this.answer = newAnswer;
     }
 }
