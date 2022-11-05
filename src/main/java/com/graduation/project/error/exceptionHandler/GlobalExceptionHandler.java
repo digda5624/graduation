@@ -1,5 +1,7 @@
-package com.graduation.project.error;
+package com.graduation.project.error.exceptionHandler;
 
+import com.graduation.project.error.UserErrorResult;
+import com.graduation.project.error.UserException;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,14 +21,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
     private ResponseEntity<ErrorResponse> makeErrorResponseEntity(UserErrorResult errorResult) {
         return ResponseEntity.status(errorResult.getHttpStatus())
-                .body(new ErrorResponse(errorResult.name(), errorResult.getMessage()));
-    }
-
-    @Data
-    @RequiredArgsConstructor
-    static class ErrorResponse {
-        private final String code;
-        private final String message;
+                .body(new ErrorResponse(errorResult.getHttpStatus(), errorResult.getMessage()));
     }
 
 }

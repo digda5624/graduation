@@ -4,6 +4,8 @@ spring:
     username: sa
     password:
     driver-class-name: org.h2.Driver
+  config:
+    import: application-security.yml
 
   jpa:
     hibernate:
