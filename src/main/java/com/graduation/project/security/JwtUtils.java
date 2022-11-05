@@ -38,6 +38,14 @@ public class JwtUtils {
         return token;
     }
 
+    public String createAccessToken(Long id) {
+        return JWT.create()
+                .withSubject("AccessToken")
+                .withExpiresAt(new Date(System.currentTimeMillis() + jwtExpirationInMs * 1000L))
+                .withClaim("id", id)
+                .sign(Algorithm.HMAC512(secretKey));
+    }
+
     public String createRefreshToken(Authentication authentication) {
         PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
         String token = JWT.create()
