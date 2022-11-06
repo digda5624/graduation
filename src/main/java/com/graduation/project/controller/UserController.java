@@ -16,13 +16,13 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/users/{userId}")
-    public ResponseEntity<UserGetResponse> getUser(@PathVariable Long userId) {
+    @GetMapping("/users")
+    public ResponseEntity<UserGetResponse> getUser(@Login Long userId) {
         return ResponseEntity.ok(userService.getUser(userId));
     }
 
-    @DeleteMapping("/users/{userId}")
-    public ResponseEntity<Void> removeUsers(@PathVariable Long userId) {
+    @DeleteMapping("/users")
+    public ResponseEntity<Void> removeUsers(@Login Long userId) {
         userService.removeUser(userId);
         return ResponseEntity.noContent().build();
     }
