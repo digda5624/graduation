@@ -35,4 +35,25 @@ public class Post extends BaseEntity {
 
     @OneToMany(mappedBy = "post")
     private List<Comment> comments;
+
+    @Builder
+    private Post(String title, String content, Boolean anonymous, Integer commentCnt, Integer heartCnt, Integer imgCnt, Integer videoCnt, User user) {
+        this.title = title;
+        this.content = content;
+        this.anonymous = anonymous;
+        this.commentCnt = commentCnt;
+        this.heartCnt = heartCnt;
+        this.imgCnt = imgCnt;
+        this.videoCnt = videoCnt;
+        this.user = user;
+    }
+
+    public static Post createPost(String title, String content, Boolean anonymous, User user) {
+        return Post.builder()
+                .title(title)
+                .content(content)
+                .anonymous(anonymous)
+                .user(user)
+                .build();
+    }
 }
