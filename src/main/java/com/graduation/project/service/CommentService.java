@@ -1,15 +1,25 @@
 package com.graduation.project.service;
 
 import com.graduation.project.domain.Comment;
+import com.graduation.project.domain.Post;
+import com.graduation.project.domain.User;
 import com.graduation.project.dto.Result;
+import com.graduation.project.dto.SaveCommentRequest;
 import com.graduation.project.dto.UserPostResponse;
+import com.graduation.project.error.PostErrorResult;
+import com.graduation.project.error.PostException;
+import com.graduation.project.error.UserErrorResult;
+import com.graduation.project.error.UserException;
 import com.graduation.project.repository.CommentRepository;
+import com.graduation.project.repository.PostRepository;
+import com.graduation.project.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -17,7 +27,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CommentService {
 
-    private CommentRepository commentRepository;
+    private final CommentRepository commentRepository;
+    private final UserRepository userRepository;
+    private final PostRepository postRepository;
 
     public Result<Collection<UserPostResponse>> searchByUser(Long userId) {
         List<Comment> byUser = commentRepository.findByUser(userId);
@@ -27,5 +39,17 @@ public class CommentService {
                 ))
                 .collect(Collectors.toList());
         return new Result<>(collect);
+    }
+
+    public void saveComment(Long userId, Long postId, Long parentCommentId, SaveCommentRequest request) {
+        User findUser = userRepository.findById(userId).orElseThrow(() -> new UserException(UserErrorResult.USER_NOT_FOUND));
+        Post findPost = postRepository.findById(postId).orElseThrow(() -> new PostException(PostErrorResult.POST_NOT_FINE));
+
+        Comment comment = request.createComment(findUser, findPost);
+        if (parentCommentId != null) {
+            Comment parentComment = commentRepository.getById(parentCommentId);
+            comment.updateParentComment(parentComment);
+        }
+        commentRepository.save(comment);
     }
 }

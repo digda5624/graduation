@@ -3,8 +3,6 @@ package com.graduation.project.init;
 import com.graduation.project.domain.Review;
 import com.graduation.project.domain.Room;
 import com.graduation.project.domain.User;
-import com.graduation.project.domain.enumType.DealType;
-import com.graduation.project.domain.enumType.RoomType;
 import com.graduation.project.repository.ReviewRepository;
 import com.graduation.project.repository.RoomRepository;
 import com.graduation.project.repository.UserRepository;
@@ -36,8 +34,8 @@ public class DataInit {
         User user = new User();
         Room room1 = Room.builder()
                 .address("address")
-                .roomType(RoomType.ONE_ROOM)
-                .dealType(DealType.MONTH)
+                .roomType(com.graduation.project.domain.enumType.RoomType.ONE_ROOM)
+                .dealType(com.graduation.project.domain.enumType.DealType.MONTH)
                 .distance(10D)
                 .price(10000)
                 .sigungu("sigungu")
@@ -46,8 +44,8 @@ public class DataInit {
 
         Room room2 = Room.builder()
                 .address("address")
-                .roomType(RoomType.ONE_ROOM)
-                .dealType(DealType.MONTH)
+                .roomType(com.graduation.project.domain.enumType.RoomType.ONE_ROOM)
+                .dealType(com.graduation.project.domain.enumType.DealType.MONTH)
                 .distance(10D)
                 .price(10000)
                 .sigungu("sigungu")
@@ -56,8 +54,8 @@ public class DataInit {
 
         Room room3 = Room.builder()
                 .address("address")
-                .roomType(RoomType.ONE_ROOM)
-                .dealType(DealType.MONTH)
+                .roomType(com.graduation.project.domain.enumType.RoomType.ONE_ROOM)
+                .dealType(com.graduation.project.domain.enumType.DealType.MONTH)
                 .distance(10D)
                 .price(10000)
                 .sigungu("sigungu")
