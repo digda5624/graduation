@@ -23,6 +23,7 @@ public class Comment extends BaseEntity {
     private LocalDate date;          // 게시글 작성 날짜
     private LocalTime time;          // 게시글 작성 시간
     private Boolean anonymous;       // 익명 댓글 여부
+    private String content;          // 댓글 내용
 
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -43,4 +44,27 @@ public class Comment extends BaseEntity {
     @JoinColumn(name = "pComment_id")
     private Comment parentComment;
 
+    @Builder
+    public Comment(Long id, LocalDate date, LocalTime time, Boolean anonymous, String content, Post post, User user) {
+        this.id = id;
+        this.date = date;
+        this.time = time;
+        this.anonymous = anonymous;
+        this.content = content;
+        this.post = post;
+        this.user = user;
+    }
+
+    public static Comment createComment(Boolean anonymous, String content, Post post, User user) {
+        return Comment.builder()
+                .anonymous(anonymous)
+                .content(content)
+                .post(post)
+                .user(user)
+                .build();
+    }
+
+    public void updateParentComment(Comment parentComment) {
+        this.parentComment = parentComment;
+    }
 }

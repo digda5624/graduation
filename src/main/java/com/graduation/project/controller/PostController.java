@@ -1,12 +1,13 @@
 package com.graduation.project.controller;
 
-import com.graduation.project.dto.Result;
-import com.graduation.project.dto.UserPostResponse;
+import com.graduation.project.argumentResolver.Login;
+import com.graduation.project.domain.enumtype.PostType;
+import com.graduation.project.dto.*;
 import com.graduation.project.service.PostService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,5 +20,25 @@ public class PostController {
     @GetMapping("/user/post/{userId}")
     public Result searchPostByUSer(@PathVariable Long userId) {
         return postService.searchByUser(userId);
+    }
+
+    @PostMapping("/post")
+    public void savePost(@Login Long userId, @RequestBody SavePostRequest request) {
+        postService.savePost(userId, request);
+    }
+
+    @GetMapping("/post/preview/main")
+    public PostPreviews minaPostPreview() {
+        return postService.mainPreviewPost();
+    }
+
+    @GetMapping("/post/preview/post-type")
+    public Slice<PostPreview> postTypePreview(@RequestParam("postType") PostType postType, Pageable pageable) {
+        return postService.previewPostByPostType(postType, pageable);
+    }
+
+    @GetMapping("/post/detail")
+    public PostDetail getPostDetail(@RequestParam("postId") Long postId) {
+        return postService.getPostDetail(postId);
     }
 }

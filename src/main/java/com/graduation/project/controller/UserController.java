@@ -43,12 +43,12 @@ public class UserController {
     }
 
     @GetMapping("/user/info")
-    public UserInfoResponse getUserInfo(@Login Long id) {
-        return userService.getUserInfo(id);
+    public UserInfoResponse getUserInfo(@Login Long userId) {
+        return userService.getUserInfo(userId);
     }
 
     @GetMapping("/user/hint")
-    public String getHint(String loginId) {
+    public String getHint(@RequestParam("loginId") String loginId) {
         return userService.getHint(loginId);
     }
 
