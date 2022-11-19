@@ -3,6 +3,7 @@ package com.graduation.project.controller;
 
 import com.graduation.project.argumentResolver.Login;
 import com.graduation.project.dto.*;
+import com.graduation.project.dto.UpdateUserRequest;
 import com.graduation.project.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
