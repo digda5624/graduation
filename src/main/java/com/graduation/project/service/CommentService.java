@@ -50,6 +50,7 @@ public class CommentService {
             Comment parentComment = commentRepository.getById(parentCommentId);
             comment.updateParentComment(parentComment);
         }
+        findPost.saveComment();
         commentRepository.save(comment);
     }
 }

@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 public class PostPreview{
+    private Long postId;
     private String title;
     private String content;
     private Boolean anonymous;
@@ -22,6 +23,7 @@ public class PostPreview{
 
     public static PostPreview createPostPreview(Post post) {
         return PostPreview.builder()
+                .postId(post.getId())
                 .title(post.getTitle())
                 .content(post.getContent())
                 .anonymous(post.getAnonymous())
