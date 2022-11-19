@@ -13,8 +13,8 @@ public class CommentController {
 
     private final CommentService commentService;
 
-    @GetMapping("/user/comment/{userId}")
-    public Result searchCommentByUser(@PathVariable Long userId) {
+    @GetMapping("/user/comment")
+    public Result searchCommentByUser(@Login Long userId) {
         return commentService.searchByUser(userId);
     }
 
