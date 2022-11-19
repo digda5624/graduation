@@ -39,4 +39,9 @@ public interface PostRepository extends JpaRepository<Post, Long> {
             "where p.id =:postId")
     Optional<Post> findByIdWithUser(Long postId);
 
+    @Query("select distinct p " +
+            "from Post p " +
+            "left join fetch p.postHearts " +
+            "where p.id =:postId")
+    Optional<Post> findByIdWithPostHeart(@Param("postId") Long postId);
 }

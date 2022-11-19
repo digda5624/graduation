@@ -59,4 +59,12 @@ public class Post extends BaseEntity {
                 .user(user)
                 .build();
     }
+
+    public void saveComment() {
+        this.commentCnt += 1;
+    }
+
+    public void savePostHeart() {
+        this.heartCnt += 1;
+    }
 }
