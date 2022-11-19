@@ -50,6 +50,17 @@ public class UserService {
         optionalUsers.orElseThrow(() -> new UserException(UserErrorResult.USER_NOT_FOUND));
         userRepository.deleteById(userId);
     }
+    
+    public void updateUser(Long userId, UpdateUserRequest request) {
+        User findUser = userRepository.findById(userId)
+                .orElseThrow(() -> new UserException(UserErrorResult.USER_NOT_FOUND));
+        userRepository.findByLoginId(request.getLoginId())
+                .ifPresent((user) -> {
+                    throw new UserException(UserErrorResult.ALREADY_LOGINID_OR_NICKNAME_EXIST);
+                });
+        String password = passwordEncoder.encode(request.getPassword());
+        findUser.updateInfo(request, password);
+    }
 
     public void signup(SignupRequest request) {
         if (!Objects.equals(request.getPassword(), request.getPasswordCheck()))
