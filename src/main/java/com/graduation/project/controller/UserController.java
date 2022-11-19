@@ -26,6 +26,11 @@ public class UserController {
         userService.removeUser(userId);
         return ResponseEntity.noContent().build();
     }
+    
+    @PatchMapping("/user")
+    public void updateUser(@Login Long userId, @RequestBody UpdateUserRequest request) {
+        userService.updateUser(userId, request);
+    }
 
     @PostMapping("/user/signup")
     public void signup(@RequestBody SignupRequest request) {
