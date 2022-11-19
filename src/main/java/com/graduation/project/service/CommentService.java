@@ -6,10 +6,7 @@ import com.graduation.project.domain.User;
 import com.graduation.project.dto.Result;
 import com.graduation.project.dto.SaveCommentRequest;
 import com.graduation.project.dto.UserPostResponse;
-import com.graduation.project.error.PostErrorResult;
-import com.graduation.project.error.PostException;
-import com.graduation.project.error.UserErrorResult;
-import com.graduation.project.error.UserException;
+import com.graduation.project.error.*;
 import com.graduation.project.repository.CommentRepository;
 import com.graduation.project.repository.PostRepository;
 import com.graduation.project.repository.UserRepository;
@@ -50,7 +47,12 @@ public class CommentService {
             Comment parentComment = commentRepository.getById(parentCommentId);
             comment.updateParentComment(parentComment);
         }
-        findPost.saveComment();
         commentRepository.save(comment);
+    }
+
+    public void deleteComment(Long userId, Long commentId) {
+        Comment findComment = commentRepository.findByIdAndUserId(commentId, userId)
+                .orElseThrow(() -> new CommentException(CommentErrorResult.COMMENT_NOT_EXIST));
+        commentRepository.delete(findComment);
     }
 }

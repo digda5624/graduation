@@ -25,4 +25,9 @@ public class CommentController {
                             @RequestBody SaveCommentRequest request) {
         commentService.saveComment(userId, postId, commentId, request);
     }
+
+    @DeleteMapping("/comment/{commentId}")
+    public void deleteComment(@Login Long userId, @PathVariable("commentId") Long commentId) {
+        commentService.deleteComment(userId, commentId);
+    }
 }

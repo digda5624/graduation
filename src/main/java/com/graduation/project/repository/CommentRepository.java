@@ -23,4 +23,10 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
             "left join fetch c.commentHearts ch " +
             "where c.id =:commentId")
     Optional<Comment> findByIdWithCommentHeart(@Param("commentId") Long commentId);
+
+    @Query("select c " +
+            "from Comment c " +
+            "where c.id =:commentId " +
+            "and c.user.id =:userId")
+    Optional<Comment> findByIdAndUserId(@Param("commentId") Long commentId, @Param("userId") Long userId);
 }

@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.List;
@@ -23,8 +25,6 @@ public class Post extends BaseEntity {
     private String content;                 // 게시글 내용
     private Boolean anonymous;              // 익명
     private PostType postType;              // 게시판 종류
-    private Integer commentCnt;             //댓글 수
-    private Integer heartCnt;               //좋아요 수
     private Integer imgCnt;                 // 게시글 이미지 개수 최대 __장
     private Integer videoCnt;               // 게시글 동영상 개수 최대 _개
 
@@ -32,19 +32,17 @@ public class Post extends BaseEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<PostHeart> postHearts;
 
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<Comment> comments;
 
     @Builder
-    private Post(String title, String content, Boolean anonymous, Integer commentCnt, Integer heartCnt, Integer imgCnt, Integer videoCnt, User user) {
+    private Post(String title, String content, Boolean anonymous, Integer imgCnt, Integer videoCnt, User user) {
         this.title = title;
         this.content = content;
         this.anonymous = anonymous;
-        this.commentCnt = commentCnt;
-        this.heartCnt = heartCnt;
         this.imgCnt = imgCnt;
         this.videoCnt = videoCnt;
         this.user = user;
@@ -60,11 +58,4 @@ public class Post extends BaseEntity {
                 .build();
     }
 
-    public void saveComment() {
-        this.commentCnt += 1;
-    }
-
-    public void savePostHeart() {
-        this.heartCnt += 1;
-    }
 }

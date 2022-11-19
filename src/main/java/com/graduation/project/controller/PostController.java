@@ -41,4 +41,9 @@ public class PostController {
     public PostDetail getPostDetail(@RequestParam("postId") Long postId) {
         return postService.getPostDetail(postId);
     }
+
+    @DeleteMapping("/post/{postId}")
+    public void deletePost(@Login Long userId, @PathVariable("postId") Long postId) {
+        postService.deletePost(userId, postId);
+    }
 }

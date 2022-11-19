@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -67,5 +68,11 @@ public class PostService {
         Post findPost = postRepository.findById(postId).orElseThrow(() -> new PostException(PostErrorResult.POST_NOT_FINE));
         PostDetail postDetail = new PostDetail(findPost);
         return postDetail;
+    }
+
+    public void deletePost(Long userId, Long postId) {
+        Post findPost = postRepository.findByIdAndUserId(postId, userId)
+                .orElseThrow(() -> new PostException(PostErrorResult.POST_NOT_EXIST));
+        postRepository.delete(findPost);
     }
 }
