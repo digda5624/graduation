@@ -8,6 +8,7 @@ import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.parameters.P;
 
 import java.util.List;
 import java.util.Optional;
@@ -44,4 +45,10 @@ public interface PostRepository extends JpaRepository<Post, Long> {
             "left join fetch p.postHearts " +
             "where p.id =:postId")
     Optional<Post> findByIdWithPostHeart(@Param("postId") Long postId);
+
+    @Query("select p " +
+            "from Post p " +
+            "where p.id =:postId " +
+            "and p.user.id =:userId")
+    Optional<Post> findByIdAndUserId(@Param("postId") Long postId, @Param("userId") Long userId);
 }

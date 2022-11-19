@@ -37,7 +37,6 @@ public class HeartService {
         User user = userRepository.getById(userId);
         PostHeart postHeart = PostHeart.createPostHeart(user, post);
         postHeartRepository.save(postHeart);
-        post.savePostHeart();
     }
 
     public void saveCommentHeart(Long userId, Long commentId) {
