@@ -5,6 +5,7 @@ import com.graduation.project.argumentResolver.Login;
 import com.graduation.project.domain.TokenPair;
 import com.graduation.project.domain.User;
 import com.graduation.project.domain.enumtype.Auth;
+import com.graduation.project.dto.UpdateUserRequest;
 import com.graduation.project.dto.*;
 import com.graduation.project.error.UserErrorResult;
 import com.graduation.project.error.UserException;
