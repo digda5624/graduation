@@ -2,6 +2,7 @@ package com.graduation.project.domain;
 
 import com.graduation.project.domain.enumtype.Auth;
 import com.graduation.project.dto.FindPasswordRequest;
+import com.graduation.project.dto.UpdateUserRequest;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -61,5 +62,11 @@ public class User {
         this.password = password;
         this.hint = newHint;
         this.answer = newAnswer;
+    }
+    
+    public void updateInfo(UpdateUserRequest request, String password) {
+        this.nickname = request.getNickname();
+        this.loginId = request.getLoginId();
+        this.password = password;
     }
 }
