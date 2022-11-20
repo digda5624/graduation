@@ -1,5 +1,7 @@
 package com.graduation.project.error.exceptionHandler;
 
+import com.graduation.project.error.ChatErrorResult;
+import com.graduation.project.error.ChatException;
 import com.graduation.project.error.UserErrorResult;
 import com.graduation.project.error.UserException;
 import lombok.Data;
@@ -24,4 +26,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .body(new ErrorResponse(errorResult.getHttpStatus(), errorResult.getMessage()));
     }
 
+    @ExceptionHandler({ChatException.class})
+    public ResponseEntity<ErrorResponse> handleUserException(ChatException ex) {
+        log.warn("Chat Exception occur: ", ex);
+        return this.makeErrorResponseEntity(ex.getChatErrorResult());
+    }
+    private ResponseEntity<ErrorResponse> makeErrorResponseEntity(ChatErrorResult errorResult) {
+        return ResponseEntity.status(errorResult.getHttpStatus())
+                .body(new ErrorResponse(errorResult.getHttpStatus(), errorResult.getMessage()));
+    }
 }
