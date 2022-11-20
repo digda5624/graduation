@@ -59,7 +59,10 @@ public class UserService {
                 .ifPresent((user) -> {
                     throw new UserException(UserErrorResult.ALREADY_LOGINID_OR_NICKNAME_EXIST);
                 });
-        String password = passwordEncoder.encode(request.getPassword());
+        String password = findUser.getPassword();
+        if (request.getPassword() != null) {
+            password = passwordEncoder.encode(request.getPassword());
+        }
         findUser.updateInfo(request, password);
     }
 
