@@ -17,6 +17,6 @@ public class UserPostResponse {
     private final String postType;
     private final Integer commentCnt;
     private final Integer heartCnt;
-    private LocalDate createdDate;
-    private LocalTime createdTime;
+    private final LocalDate createdDate;
+    private final LocalTime createdTime;
 }
