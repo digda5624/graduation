@@ -155,7 +155,7 @@ public class UserService {
     public String getHint(String loginId) {
         User findUser = userRepository.findByLoginId(loginId)
                 .orElseThrow(() -> new UserException(UserErrorResult.USER_NOT_FOUND));
-        return findUser.getAnswer();
+        return findUser.getHint();
     }
 
     public String answerToHint(AnswerToHintRequest request) {
