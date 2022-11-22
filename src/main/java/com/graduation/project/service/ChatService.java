@@ -159,7 +159,7 @@ public class ChatService {
                     if (cr.getReceiver() == null) {
                         throw new ChatException(ChatErrorResult.WITHDRAWN_MEMBER);
                     }
-                    if (!Objects.equals(cr.getReceiver().getId(), userId)) {
+                    if (!Objects.equals(cr.getReceiver().getId(), userId) || !Objects.equals(cr.getSender().getId(), userId)) {
                         throw new ChatException(ChatErrorResult.UNAUTHORIZED_USER_ACCESS);
                     }
                     if (cr.getPartner_id() != null) {
