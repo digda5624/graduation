@@ -28,9 +28,9 @@ public class CommentService {
     private final UserRepository userRepository;
     private final PostRepository postRepository;
 
-    public Result<Collection<UserPostResponse>> searchByUser(Long userId) {
+    public Result<List<UserPostResponse>> searchByUser(Long userId) {
         List<Comment> byUser = commentRepository.findByUser(userId);
-        Collection<UserPostResponse> collect = byUser.stream()
+        List<UserPostResponse> collect = byUser.stream()
                 .map(comment -> new UserPostResponse(
                         comment.getPost().getId(), comment.getPost().getTitle(), comment.getPost().getComments().size(), comment.getPost().getPostHearts().size()
                 ))
