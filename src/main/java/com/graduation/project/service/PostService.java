@@ -35,7 +35,7 @@ public class PostService {
         List<Post> posts = postRepository.findByUser(userId);
         List<UserPostResponse> collect = posts.stream()
                 .map(post -> new UserPostResponse(
-                        post.getId(), post.getTitle(), post.getComments().size(), post.getPostHearts().size()
+                        post.getId(), post.getTitle(), post.getPostType().getName(), post.getComments().size(), post.getPostHearts().size()
                 ))
                 .collect(Collectors.toList());
         return new Result<>(collect);
