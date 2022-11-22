@@ -19,6 +19,7 @@ public class ChatListDto {
     private Long opponent_id;
     private String opponent_nickname;
     private Long post_id;
+    private String postType;
     private Long comment_id;
 
     public ChatListDto(Long userId, ChatRoom chatRoom) {
@@ -26,6 +27,7 @@ public class ChatListDto {
         Post post = chatRoom.getPost();
         if (post != null) {
             this.post_id = post.getId();
+            this.postType = post.getPostType().getName();
         }
         this.recentMessage = chatRoom.getMessage();
         this.date = chatRoom.getDate();
