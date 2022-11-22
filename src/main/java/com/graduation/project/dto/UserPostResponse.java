@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserPostResponse {
 
-    private final Long id;
+    private final Long postId;
     private final String title;
     private final String postType;
     private final Integer commentCnt;
