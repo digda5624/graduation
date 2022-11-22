@@ -20,6 +20,7 @@ public class PostPreview{
     private Integer commentCnt;
     private Integer heartCnt;
     private PostType postType;
+    private String userName;
 
     public static PostPreview createPostPreview(Post post) {
         return PostPreview.builder()
@@ -31,6 +32,20 @@ public class PostPreview{
                 .commentCnt(post.getComments().size())
                 .heartCnt(post.getPostHearts().size())
                 .postType(post.getPostType())
+                .build();
+    }
+
+    public static PostPreview createPostPreviewWithUser(Post post) {
+        return PostPreview.builder()
+                .postId(post.getId())
+                .title(post.getTitle())
+                .content(post.getContent())
+                .anonymous(post.getAnonymous())
+                .createdDate(post.getCreatedDate())
+                .commentCnt(post.getComments().size())
+                .heartCnt(post.getPostHearts().size())
+                .postType(post.getPostType())
+                .userName(post.getUser().getNickname())
                 .build();
     }
 }

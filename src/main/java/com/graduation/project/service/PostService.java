@@ -66,7 +66,7 @@ public class PostService {
 
     public Slice<PostPreview> previewPostByPostType(PostType postType, Pageable pageable) {
         Slice<Post> postSlice = postRepository.findPostPreview(postType, pageable);
-        return postSlice.map(PostPreview::createPostPreview);
+        return postSlice.map(PostPreview::createPostPreviewWithUser);
     }
 
     public PostDetail getPostDetail(Long postId) {

@@ -28,6 +28,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     @Query("select p " +
             "from Post p " +
+            "join fetch p.user " +
             "where p.postType =:postType " +
             "order by p.createdDate desc")
     Slice<Post> findPostPreview(@Param("postType") PostType postType, Pageable pageable);
