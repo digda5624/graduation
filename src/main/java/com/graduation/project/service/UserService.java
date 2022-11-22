@@ -57,7 +57,7 @@ public class UserService {
                 .orElseThrow(() -> new UserException(UserErrorResult.USER_NOT_FOUND));
         userRepository.findByLoginId(request.getLoginId())
                 .ifPresent((user) -> {
-                    if (!Objects.equals(request.getLoginId(), user.getLoginId()) {
+                    if (!Objects.equals(request.getLoginId(), user.getLoginId())) {
                         throw new UserException(UserErrorResult.ALREADY_LOGINID_OR_NICKNAME_EXIST);
                     }
                 });
