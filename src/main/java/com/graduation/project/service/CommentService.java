@@ -14,6 +14,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
@@ -28,11 +31,13 @@ public class CommentService {
     private final UserRepository userRepository;
     private final PostRepository postRepository;
 
-    public Result<Collection<UserPostResponse>> searchByUser(Long userId) {
+    public Result<List<UserPostResponse>> searchByUser(Long userId) {
         List<Comment> byUser = commentRepository.findByUser(userId);
-        Collection<UserPostResponse> collect = byUser.stream()
+        List<UserPostResponse> collect = byUser.stream()
                 .map(comment -> new UserPostResponse(
-                        comment.getPost().getId(), comment.getPost().getTitle(), comment.getPost().getComments().size(), comment.getPost().getPostHearts().size()
+                        comment.getPost().getId(), comment.getContent(), comment.getPost().getPostType().getName(), 
+                    comment.getPost().getComments().size(), comment.getPost().getPostHearts().size(),
+                    comment.getCreatedDate().toLocalDate(), comment.getCreatedDate().toLocalTime()
                 ))
                 .collect(Collectors.toList());
         return new Result<>(collect);

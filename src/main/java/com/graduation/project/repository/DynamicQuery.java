@@ -1,7 +1,7 @@
 package com.graduation.project.repository;
 
-import com.graduation.project.domain.enumType.DealType;
-import com.graduation.project.domain.enumType.RoomType;
+import com.graduation.project.domain.enumtype.DealType;
+import com.graduation.project.domain.enumtype.RoomType;
 import com.graduation.project.dto.RoomSearchRequest;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;

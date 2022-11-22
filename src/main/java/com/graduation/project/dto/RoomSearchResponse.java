@@ -1,8 +1,8 @@
 package com.graduation.project.dto;
 
 import com.graduation.project.domain.Room;
-import com.graduation.project.domain.enumType.DealType;
-import com.graduation.project.domain.enumType.RoomType;
+import com.graduation.project.domain.enumtype.DealType;
+import com.graduation.project.domain.enumtype.RoomType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

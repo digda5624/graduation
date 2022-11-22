@@ -1,4 +1,4 @@
-package com.graduation.project.domain.enumType;
+package com.graduation.project.domain.enumtype;
 
 public enum DealType {
     PERIOD, // 전세

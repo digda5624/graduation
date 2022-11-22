@@ -57,7 +57,9 @@ public class UserService {
                 .orElseThrow(() -> new UserException(UserErrorResult.USER_NOT_FOUND));
         userRepository.findByLoginId(request.getLoginId())
                 .ifPresent((user) -> {
-                    throw new UserException(UserErrorResult.ALREADY_LOGINID_OR_NICKNAME_EXIST);
+                    if (!Objects.equals(request.getLoginId(), user.getLoginId())) {
+                        throw new UserException(UserErrorResult.ALREADY_LOGINID_OR_NICKNAME_EXIST);
+                    }
                 });
         String password = findUser.getPassword();
         if (request.getPassword() != null) {
@@ -153,7 +155,7 @@ public class UserService {
     public String getHint(String loginId) {
         User findUser = userRepository.findByLoginId(loginId)
                 .orElseThrow(() -> new UserException(UserErrorResult.USER_NOT_FOUND));
-        return findUser.getAnswer();
+        return findUser.getHint();
     }
 
     public String answerToHint(AnswerToHintRequest request) {
