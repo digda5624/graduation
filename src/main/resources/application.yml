@@ -8,12 +8,13 @@ server:
 
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/graduation
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+    url: jdbc:mysql://localhost:3306/graduation
+    username: root
+    password: happy05080!
+    driver-class-name: com.mysql.cj.jdbc.Driver
   config:
     import: application-security.yml
+
 
   jpa:
     hibernate:
@@ -23,6 +24,7 @@ spring:
         show_sql: true
         format_sql: true
         default_batch_fetch_size: 100
+    database-platform: org.hibernate.dialect.MySQL8Dialect
 logging:
   level:
     org.hibernate.SQL: debug

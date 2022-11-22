@@ -34,8 +34,8 @@ public class DataInit {
         User user = new User();
         Room room1 = Room.builder()
                 .address("address")
-                .roomType(com.graduation.project.domain.enumType.RoomType.ONE_ROOM)
-                .dealType(com.graduation.project.domain.enumType.DealType.MONTH)
+                .roomType(com.graduation.project.domain.enumtype.RoomType.ONE_ROOM)
+                .dealType(com.graduation.project.domain.enumtype.DealType.MONTH)
                 .distance(10D)
                 .price(10000)
                 .sigungu("sigungu")
@@ -44,8 +44,8 @@ public class DataInit {
 
         Room room2 = Room.builder()
                 .address("address")
-                .roomType(com.graduation.project.domain.enumType.RoomType.ONE_ROOM)
-                .dealType(com.graduation.project.domain.enumType.DealType.MONTH)
+                .roomType(com.graduation.project.domain.enumtype.RoomType.ONE_ROOM)
+                .dealType(com.graduation.project.domain.enumtype.DealType.MONTH)
                 .distance(10D)
                 .price(10000)
                 .sigungu("sigungu")
@@ -54,8 +54,8 @@ public class DataInit {
 
         Room room3 = Room.builder()
                 .address("address")
-                .roomType(com.graduation.project.domain.enumType.RoomType.ONE_ROOM)
-                .dealType(com.graduation.project.domain.enumType.DealType.MONTH)
+                .roomType(com.graduation.project.domain.enumtype.RoomType.ONE_ROOM)
+                .dealType(com.graduation.project.domain.enumtype.DealType.MONTH)
                 .distance(10D)
                 .price(10000)
                 .sigungu("sigungu")

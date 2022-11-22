@@ -2,14 +2,13 @@ package com.graduation.project.init;
 
 import com.graduation.project.domain.Post;
 import com.graduation.project.domain.User;
-import com.graduation.project.domain.enumtype.Auth;
 import com.graduation.project.domain.enumtype.PostType;
+import com.graduation.project.domain.enumtype.Auth;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 
 @Component
