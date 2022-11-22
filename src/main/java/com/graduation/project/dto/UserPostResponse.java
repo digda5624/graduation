@@ -1,5 +1,8 @@
 package com.graduation.project.dto;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -14,4 +17,6 @@ public class UserPostResponse {
     private final String postType;
     private final Integer commentCnt;
     private final Integer heartCnt;
+    private LocalDate createdDate;
+    private LocalTime createdTime;
 }
