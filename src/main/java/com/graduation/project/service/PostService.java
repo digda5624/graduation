@@ -18,6 +18,9 @@ import org.springframework.data.domain.SliceImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -35,7 +38,9 @@ public class PostService {
         List<Post> posts = postRepository.findByUser(userId);
         List<UserPostResponse> collect = posts.stream()
                 .map(post -> new UserPostResponse(
-                        post.getId(), post.getTitle(), post.getPostType().getName(), post.getComments().size(), post.getPostHearts().size()
+                        post.getId(), post.getTitle(), post.getPostType().getName(), 
+                    post.getComments().size(), post.getPostHearts().size(),
+                    post.getCreatedDate().toLocalDate(), post.getCreatedDate().toLocalTime()
                 ))
                 .collect(Collectors.toList());
         return new Result<>(collect);
