@@ -35,7 +35,7 @@ public class CommentService {
         List<Comment> byUser = commentRepository.findByUser(userId);
         List<UserPostResponse> collect = byUser.stream()
                 .map(comment -> new UserPostResponse(
-                        comment.getPost().getId(), comment.getPost().getTitle(), comment.getPost().getPostType().getName(), 
+                        comment.getPost().getId(), comment.getContent(), comment.getPost().getPostType().getName(), 
                     comment.getPost().getComments().size(), comment.getPost().getPostHearts().size(),
                     comment.getCreatedDate().toLocalDate(), comment.getCreatedDate().toLocalTime()
                 ))
